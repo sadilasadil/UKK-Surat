@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,6 +21,24 @@
 
     <!-- Custom Fonts -->
     <link href="<?php echo base_url() ?>assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- DataTables CSS -->
+    <link href="<?php echo base_url() ?>assets/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+    <link href="<?php echo base_url() ?>assets/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+
+    <style type="text/css">
+        @page{size:landscape;}
+        @media print{
+            .custom-search-form, .print{
+                display:none;
+            }
+            #page-wrapper{
+                margin: 0!important;
+            }
+        }
+    </style>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -89,10 +106,10 @@
                             }else{
                                 echo '
                                     <li>
-                                        <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                                        <a href="'.base_url('index.php/disMasuk').'"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                                     </li>
                                     <li>
-                                        <a href="'.base_url('index.php/disMasuk').'"><i class="fa fa-sign-in fa-fw"></i> Disposisi Surat</a>
+                                        <a href="'.base_url('index.php/disMasuk/disMasuk').'"><i class="fa fa-sign-in fa-fw"></i> Disposisi Surat</a>
                                     </li>
                                 ';
                             }
@@ -127,6 +144,29 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="<?php echo base_url() ?>assets/dist/js/sb-admin-2.js"></script>
+
+    <!-- DataTables JavaScript -->
+    <script src="<?php echo base_url() ?>assets/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="<?php echo base_url() ?>assets/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="<?php echo base_url() ?>assets/vendor/datatables-responsive/dataTables.responsive.js"></script>
+
+    <script>
+    $(document).ready(function() {
+        $('#dataTables-example').DataTable({
+            responsive: true
+        });
+    });
+    </script>
+
+    <script type="text/javascript">
+    function printPage() {
+        window.print()
+    }
+
+    $(document).ready(function(){
+        refreshdataTables-example();
+    })
+</script>
 
 </body>
 

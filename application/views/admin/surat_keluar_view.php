@@ -24,8 +24,9 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <a href="#" class="btn btn-success" data-toggle="modal" data-target="#modal_tambah">Tambah Surat</a>
+                        <div class="panel-heading print">
+                            <button class="btn btn-default print" onclick="printPage()"><i class="fa fa-print"> Print</i></button>
+                            <a href="#" class="btn btn-success print" data-toggle="modal" data-target="#modal_tambah">Tambah Surat</a>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -38,7 +39,7 @@
                                         <th>TGL.KIRIM</th>
                                         <th>TGL.TERIMA</th>
                                         <th>PERIHAL</th>
-                                        <th>AKSI</th>
+                                        <th class="print">AKSI</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -49,7 +50,7 @@
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td>
+                                        <td class="print">
                                             <a href="" class="btn btn-sm btn-info">Lihat</a>
                                             <a href="" class="btn btn-sm btn-primary">Disposisi</a>
                                             <a href="#" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modal_ubah">Ubah</a>
@@ -68,6 +69,7 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
+            </div>
 
 <!-- Modal Tambah -->
         <div class="modal fade" id="modal_tambah" tabindex="-1" role="dialog" aria-labelledby="modal_tambahLabel" aria-hidden="true" data-backdrop="static">
@@ -142,7 +144,7 @@
                 <div class="modal-content">
                     <form action="" method="post" enctype="multipart/form-data">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="modal_addLabel">Ubah Surat Keluar</h4>
+                        <h4 class="modal-title" id="modal_ubahLabel">Ubah Surat Keluar</h4>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">

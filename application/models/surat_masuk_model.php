@@ -43,13 +43,12 @@ class Surat_masuk_model extends CI_Model {
 				 		->result();
 	}
 
-	/*public function get_surat_masuk_by_id($id_surat_masuk)
+	public function get_surat_masuk_by_id($id_surat_masuk)
 	{
-		$query = $this->db->where('id_surat_masuk', $id_surat_masuk)
+		return $this->db->where('id_surat_masuk', $id_surat_masuk)
 						->get('surat_masuk')
 						->row();
-		echo json_encode($query);
-	}*/
+	}
 
 	public function tambah_surat($data_surat)
 	{

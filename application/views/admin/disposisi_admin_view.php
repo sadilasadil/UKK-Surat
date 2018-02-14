@@ -26,7 +26,9 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
+                            <a href="" class="btn btn-default"><i class="fa fa-print"> Print</i></a>
                             <a href="#" class="btn btn-success" data-toggle="modal" data-target="#modal_tambah">Tambah Disposisi</a>
+                            | No. Surat : <?php echo $data_surat->nomor_surat; ?>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -34,8 +36,8 @@
                                 <thead>
                                     <tr>
                                         <th>NO</th>
-                                        <th>PENGIRIM</th>
-                                        <th>PENERIMA</th>
+                                        <th>UNIT TUJUAN</th>
+                                        <th>NAMA TUJUAN</th>
                                         <th>TANGGAL</th>
                                         <th>CATATAN</th>
                                         <th>STATUS</th>
@@ -43,18 +45,33 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="odd gradeX">
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>
-                                            <a href="#" class="btn btn-sm btn-primary" >Lihat Surat</a>
-                                            <button type="button" class="btn btn-sm btn-danger">Hapus</button>
-                                        </td>
-                                    </tr>
+
+                                <?php 
+                                    $no=0;
+                                    foreach ($data_disposisi as $disposisi) {
+                                        echo'
+                                            <tr class="odd gradeX">
+                                                <td>'.++$no.'</td>
+                                                <td>'.$disposisi->nama_jabatan.' '.$disposisi->nama_bagian.'</td>
+                                                <td>'.$disposisi->nama_depan.' '.$disposisi->nama_belakang.'</td>
+                                                <td>'.$disposisi->tanggal_disposisi.'</td>
+                                                <td>'.$disposisi->catatan.'</td>
+                                                <td>';
+                                                if ($disposisi->status_surat == 0) {
+                                                    echo'Belum Dibaca';
+                                                }else{
+                                                    echo'Sudah Dibaca';
+                                                }
+                                                echo'</td>
+                                                <td>
+                                                    <a href="'.base_url('uploads/'.$disposisi->data_surat).'" class="btn btn-sm btn-primary" target="blank">Lihat Surat</a>
+                                                    <a href="'.base_url('index.php/disposisi/hapus_disposisi/'.$this->uri->segment(3).'/'. $disposisi->id_disposisi).'" class="btn btn-sm btn-danger">Hapus</a>
+                                                </td>
+                                            </tr>
+                                        ';
+                                    }
+                                ?>
+                                    
                                 </tbody>
                             </table>
                             <!-- /.table-responsive -->
@@ -71,49 +88,34 @@
         <div class="modal fade" id="modal_tambah" tabindex="-1" role="dialog" aria-labelledby="modal_tambahLabel" aria-hidden="true" data-backdrop="static">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form action="" method="post" enctype="multipart/form-data">
+                    <form action="<?php echo base_url('index.php/disposisi/tambah_disposisi/'.$this->uri->segment(3)); ?>" method="post" enctype="multipart/form-data">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="modal_addLabel">Tambah Anggota</h4>
+                        <h4 class="modal-title" id="modal_addLabel">Tambah Disposisi</h4>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label>NIK</label>
-                            <input type="number" name="nik" class="form-control">
+                            <label>Tujuan</label>
+                            <select class="form-control" name="tujuan">
+                                <option>--Pilih Tujuan--</option>
+                                <?php 
+                                    foreach ($data_tujuan as $tujuan) {
+                                        echo'
+                                            <option value="'.$tujuan->id_pengguna.'">'.$tujuan->nama_jabatan.' '.$tujuan->nama_bagian.' ('.$tujuan->nama_depan.' '.$tujuan->nama_belakang.')</option>
+                                        ';
+                                    }
+                                ?>
+                                
+                            </select>
                         </div>
 
                         <div class="form-group">
-                            <label>Nama Depan</label>
-                            <input type="text" name="nama_depan" class="form-control">
+                            <label>Tanggal</label>
+                            <input type="date" name="tanggal" class="form-control">
                         </div>
 
                         <div class="form-group">
-                            <label>Nama Belakang</label>
-                            <input type="text" name="nama_belakang" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label>Password</label>
-                            <input type="password" name="password" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label>Jabatan</label>
-                                <select class="form-control">
-                                    <option>--Pilih Jabatan--</option>
-                                    <option value="1">Admin</option>
-                                    <option value="2">Direktur</option>
-                                    <option value="3">Manager</option>
-                                    <option value="4">Supervisor</option>
-                                    <option value="5">Pegawai</option>
-                                </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Bagian</label>
-                                <select class="form-control">
-                                    <option>--Pilih Jabatan--</option>
-                                    <option value="1">Marketing</option>
-                                    <option value="2">HRD</option>
-                                    <option value="3">Financial</option>
-                                    <option value="4">Administrasi</option>
-                                </select>
+                            <label>Catatan</label>
+                            <textarea class="form-control" name="catatan"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">

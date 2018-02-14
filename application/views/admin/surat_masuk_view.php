@@ -24,7 +24,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading">
+                        <div class="panel-heading print">
+                            <a href="" class="btn btn-default" onclick="printPage()"><i class="fa fa-print"> Print</i></a>
                             <a href="#" class="btn btn-success" data-toggle="modal" data-target="#modal_tambah">Tambah Surat</a>
                         </div>
                         <!-- /.panel-heading -->
@@ -39,7 +40,7 @@
                                         <th>TGL.KIRIM</th>
                                         <th>TGL.TERIMA</th>
                                         <th>PERIHAL</th>
-                                        <th>AKSI</th>
+                                        <th class="print">AKSI</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -55,9 +56,9 @@
                                                 <td>'.$surat_masuk->tanggal_kirim.'</td>
                                                 <td>'.$surat_masuk->tanggal_terima.'</td>
                                                 <td>'.$surat_masuk->perihal.'</td>
-                                                <td>
+                                                <td class="print">
                                                     <a href="'.base_url('uploads/'.$surat_masuk->data_surat).'" class="btn btn-sm btn-info" target="blank">Lihat</a>
-                                                    <a href="'.base_url('index.php/disposisi').'" class="btn btn-sm btn-primary">Disposisi</a>
+                                                    <a href="'.base_url('index.php/disposisi/disposisi/'.$surat_masuk->id_surat_masuk).'" class="btn btn-sm btn-primary">Disposisi</a>
                                                     <a href="#" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modal_ubah'.$surat_masuk->id_surat_masuk.'")">Ubah</a>
                                                     <a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#modal_ubah_file'.$surat_masuk->id_surat_masuk.'">Ubah File</a>
                                                     <a href="'.base_url('index.php/masuk/hapus_surat/'.$surat_masuk->id_surat_masuk).'" class="btn btn-sm btn-danger">Hapus</a>

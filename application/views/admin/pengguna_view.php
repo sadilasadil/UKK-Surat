@@ -24,8 +24,9 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <a href="#" class="btn btn-success" data-toggle="modal" data-target="#modal_tambah">Tambah Pengguna</a>
+                        <div class="panel-heading print">
+                            <button class="btn btn-default print" onclick="printPage()"><i class="fa fa-print" > Print</i></button>
+                            <a href="#" class="btn btn-success print" data-toggle="modal" data-target="#modal_tambah">Tambah Pengguna</a>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -37,7 +38,7 @@
                                         <th>NAMA</th>
                                         <th>JABATAN</th>
                                         <th>BAGIAN</th>
-                                        <th>AKSI</th>
+                                        <th class="print">AKSI</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -52,7 +53,7 @@
                                                     <td>'.$pengguna->nama_depan.' '.$pengguna->nama_belakang.'</td>
                                                     <td>'.$pengguna->nama_jabatan.'</td>
                                                     <td>'.$pengguna->nama_bagian.'</td>
-                                                    <td>
+                                                    <td class="print">
                                                         <a href="#" class="btn btn-warning" data-toggle="modal" data-target="#modal_ubah'.$pengguna->id_pengguna.'">Ubah</a>
                                                         <a href="'.base_url('index.php/pengguna/hapus_pengguna/'.$pengguna->id_pengguna).'" class="btn btn-danger">Hapus</a>
                                                     </td>
@@ -219,4 +220,6 @@
         ';
     }
 ?>
+
+
         
